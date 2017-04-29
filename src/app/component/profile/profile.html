@@ -1,0 +1,51 @@
+<ion-view view-title="Profile">
+  <ion-content>
+
+    <form novalidate class="list">
+
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Full Name</span>
+        <input type="text" ng-model="user.name" placeholder="Name">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Email</span>
+        <input type="text" ng-model="user.email" placeholder="Email">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Bio</span>
+        <textarea ng-model="user.bio" placeholder="Bio"></textarea>
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Phone Number</span>
+        <input type="number" ng-model="user.phone" placeholder="Phone number including country code">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">whatsapp</span>
+        <input type="text" ng-model="user.whatsapp" placeholder="Whatsapp">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">facebook</span>
+        <input type="text" ng-model="user.facebook" placeholder="facebook">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">We Chat</span>
+        <input type="text" ng-model="user.wechat" placeholder="wechat">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Skype</span>
+        <input type="text" ng-model="user.skype" placeholder="skype">
+      </label>
+
+      <vn-city-select ng-model="user.cityId"></vn-city-select>
+
+      <button class="button-bar" ui-sref="app.uploads(uploadOptions)"> update images</button>
+
+
+      <div class="button-bar">
+        <input type="submit" ng-click="editProfile(user)" value="Save Changes" class="button button-full button-balanced" />
+      </div>
+
+    </form>
+
+  </ion-content>
+</ion-view>

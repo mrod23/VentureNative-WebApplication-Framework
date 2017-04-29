@@ -1,0 +1,67 @@
+<ion-view view-title="Edit Booking">
+  <ion-content >
+    
+     <div class="list card">
+
+     <div class="item item-avatar">
+          <!-- <img src="../../../component/img/daenerys.jpg"> -->
+          <h2>{{booking.user.name}}</h2>
+          <p>Requested Date: {{booking.requestedDate | date:'MM-dd-yyyy'}}</p>
+          <p>Requested Time: {{booking.requestedTime | date:'HH:mm'}}</p>
+        </div>
+
+        <div class="item item-body">
+          <p>
+            {{booking.venture.name}}
+          </p>
+          <p>
+          ${{booking.price}} USD
+          </p>
+        </div>
+
+      </div>
+       
+    <button ng-if="booking.status === 'pending' && booking.lastUpdatedBy !== user.id" class="button" ng-click="acceptBooking(booking)">
+      Accept
+    </button>
+    <button ng-if="booking.status === 'pending' || booking.status === 'active'" class="button" ng-click="cancelBooking(booking)">
+      Cancel
+    </button>
+    <button ng-if="booking.status === 'pending'" class="button"  ui-sref="app.updateBooking({id: booking.id})">
+      Change
+    </button>
+    <button ng-if="booking.status === 'active'" class="button"  ng-click="completeBooking(booking)">
+      Complete
+    </button>
+    
+    <div class="list card">
+      <h2>Venturer Contact Info</h2>
+      <a href="#" class="item item-icon-left">
+        <i class="icon ion-home"></i>
+        Email: {{booking.user.email}}
+      </a>
+      <a href="#" ng-if="booking.user.phone" class="item item-icon-left">
+        <i class="icon ion-ios-telephone"></i>
+        Phone: {{booking.user.phone}}
+      </a>
+      <a href="#" ng-if="booking.user.whatsApp" class="item item-icon-left">
+        <i class="icon ion-card"></i>
+        WhatsApp: {{booking.user.whatsApp}}
+      </a>
+      <a href="#" ng-if="booking.user.facebook" class="item item-icon-left">
+        <i class="icon ion-card"></i>
+        Facebook: {{booking.user.facebook}}
+      </a>
+      <a href="#" ng-if="booking.user.weChat" class="item item-icon-left">
+        <i class="icon ion-card"></i>
+        WeChat: {{booking.user.weChat}}
+      </a>
+      <a href="#" ng-if="booking.user.skype" class="item item-icon-left">
+        <i class="icon ion-wifi"></i>
+        Skype: {{booking.user.skype}}
+      </a>
+    </div>
+
+
+  </ion-content>
+</ion-view>

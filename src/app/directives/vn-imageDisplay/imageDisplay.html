@@ -1,0 +1,9 @@
+<div class="image-display">
+
+  <div ng-repeat="i in images" class="image-wrapper"
+      ng-style="{'background-image': 'url( http://s3.amazonaws.com/{{i.container}}/{{i.name}}) '}">
+    <i class="ion-icon ion-close" ng-click="deleteImage(i)"></i>
+  </div>
+
+
+</div>

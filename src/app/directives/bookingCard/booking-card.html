@@ -1,0 +1,23 @@
+<div  ui-sref="app.bookingDetails({id: booking.id})"  class="card booking-card">
+
+  <div class="background" bg-image="booking.venture.images[0]">
+    <img class="avatar" ng-if="booking.venture.host.images" ng-src="{{booking.venture.host.images[0]}}">
+
+    <div class="title-bar" >
+      <p class="title">
+        {{booking.venture.name}}
+      </p>
+      <p class="author" ng-if="booking.venture.host.name"> By: {{booking.venture.host.name}}</p>
+      <p class="location-name">{{booking.venture.city.city}}, {{booking.venture.city.country}}</p>
+    </div>
+
+
+    <p class="duration"> display time here</p>
+
+    <span class="price pull-right">display day here</span>
+
+
+  </div>
+
+
+</div>

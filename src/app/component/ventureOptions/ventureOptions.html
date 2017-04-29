@@ -1,0 +1,45 @@
+<ion-view view-title="Venture Options">
+  <button id="fab" ng-click="openModal()"
+            class="button button-positive button-fab button-fab-bottom-right">
+        <i class="icon ion-search"></i>
+  </button>
+
+    <ion-content >  
+        <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="doRefresh()">
+         </ion-refresher>   
+        <ion ng-repeat="venture in ventures">
+            <ion-card class="card card-background-page" ui-sref="app.ventureDetails({id: venture.id})">
+                <img src="../../img/wolves.png">
+                <div class="card-title">{{venture.name}}</div>
+                <div class="card-price"><!-- <span class="highlight">$75</span> -->$75</div>
+                <div class="card-avatar">
+                    <img class="card-avatar" src="../../img/daenerys.png">
+                </div>
+                <ion-card-content class="text-left">
+                    <p>Host: {{venture.host.name}} | 3 hours <br> {{venture.shortDescription}}</p>
+                </ion-card-content>               
+            </ion-card>    
+            
+        </ion>
+    </ion-content>
+  
+</ion-view>
+
+
+
+<!-- 
+<ion-card>
+    
+
+    <ion-card-content>
+    <p> {{venture.host.name}}
+    <p> {{venture.description}}
+    </ion-card-content>
+<ion-avatar fab fab-right fab-top item-right>
+    <img src="../../img/wolves.png">
+</ion-avatar>
+
+
+</ion-card> -->

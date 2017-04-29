@@ -1,0 +1,43 @@
+<ion-view hide-nav-bar="false" hide-back-button="true">
+
+  <button id="fab" ng-click="openModal()"
+          class="button button-positive button-fab button-fab-bottom-right">
+      <i class="icon ion-search"></i>
+  </button>
+
+  <ion-content>
+
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="makeCalls()">
+    </ion-refresher>
+
+    <venture-card-list ventures="searchResults"></venture-card-list>
+
+    <h4 class="text-center"> Experience cities with a local</h4>
+    <h3>Browse Cities</h3>
+    <ion-scroll direction="x" class="cities">
+      <div class="city animate-area" ng-repeat="c in cities"
+            bg-image="c.imageUrl" ui-sref="app.cityOptions({id: c.id})" >
+        <h5 >{{c.city}}</h5>
+      </div>
+    </ion-scroll>
+    <h3> Featured Ventures </h3>
+    <ion-slide-box class="swiper-container-autoheight"
+          options="options" slider="data.slider">
+      <ion-slide ng-repeat="f in featured">
+          <venture-card venture="f"></venture-card>
+      </ion-slide>
+    </ion-slide-box>
+
+    <ion-slide-box class="swiper-container-autoheight" options="options" slider="data.slider">
+      <ion-slide ng-repeat="f in featured">
+          <venture-card venture="f"></venture-card>
+      </ion-slide>
+    </ion-slide-box>
+
+
+  </ion-content>
+</ion-view>
+
+

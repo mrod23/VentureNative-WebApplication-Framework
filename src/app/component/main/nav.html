@@ -1,0 +1,120 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable text-center">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="mainview"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+
+    <ion-content>
+
+      <div menu-close class="nav-card padding" ui-sref="app.host({id: user.id})" ng-if="user">
+
+          <img ng-src="{{user.images[0]}}">
+          <div class="info">
+            <p>Your Profile</p>
+            <p>{{user.name}}</p>
+          </div>
+          <i class="ion-chevron-right"></i>
+
+
+      </div>
+      <ion-list class="vn-nav-items">
+        <ion-item menu-close ui-sref="app.home">
+
+          <button class="button button-clear icon-left ion-ios-home">
+          <span>
+
+          Home
+          </span>
+          </button>
+        </ion-item>
+        <ion-item menu-close ng-if="user" ui-sref="app.myBooking.active">
+
+          <button class="button button-clear icon-left ion-android-compass">
+          <span>
+
+          My Bookings
+          </span>
+          </button>
+        </ion-item>
+        <ion-item menu-close ng-if="user" ui-sref="app.profile">
+
+          <button class="button button-clear icon-left ion-gear-b">
+          <span>
+
+          Settings
+          </span>
+          </button>
+        </ion-item>
+        <ion-item menu-close ui-sref="app.aboutUs">
+
+          <button class="button button-clear icon-left ion-information-circled">
+          <span>
+
+          About Us
+          </span>
+          </button>
+        </ion-item>
+        <ion-item menu-close ui-sref="app.contactUs">
+
+          <button class="button button-clear icon-left ion-email">
+          <span>
+
+          Contact Us
+          </span>
+          </button>
+        </ion-item>
+        <ion-item menu-close ng-if="!user" ui-sref="app.auth">
+
+          <button class="button button-clear icon-left ion-star">
+          <span>
+
+          Sign In/Up
+          </span>
+          </button>
+        </ion-item>
+        <ion-item menu-close ng-if="user" ng-click="logout()" >
+
+          <button class="button button-clear icon-left ion-android-exit">
+          <span>
+
+          Logout
+          </span>
+          </button>
+        </ion-item>
+
+        <div ng-if="user && user.isHost" class="card">
+          <h3 class="text-center">Host Tools</h3>
+          <ion-item menu-close  ui-sref="app.manageBooking.active">
+
+            <button class="button button-clear icon-left ion-calendar">
+            <span>
+
+            Manage Bookings
+            </span>
+            </button>
+          </ion-item>
+          <ion-item menu-close ng-if="user" ui-sref="app.manageVenture">
+
+            <button class="button button-clear icon-left ion-ios-albums">
+            <span>
+
+            My Ventures
+            </span>
+            </button>
+          </ion-item>
+        </div>
+
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

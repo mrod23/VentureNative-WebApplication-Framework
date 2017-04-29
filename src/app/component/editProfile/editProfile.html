@@ -1,0 +1,39 @@
+<ion-view view-title="Sos App">
+
+
+  <ion-content scroll="false">
+
+  <form novalidate class="list">
+
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Full Name</span>
+      <input type="text" ng-model="user.fullName" placeholder="Name">
+    </label>
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Email</span>
+      <input type="text" ng-model="user.email" placeholder="Email">
+    </label>
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Location</span>
+      <input type="text" ng-model="user.location" placeholder="Location">
+    </label>
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Password</span>
+      <input type="password" ng-model="user.password" placeholder="Password">
+    </label>
+
+    <vn-city-select ng-model="user.cityId"></vn-city-select>
+
+
+
+    <button class="button-bar" ui-sref="app.uploads(uploadOptions)"> update images</button>
+
+    <div class="button-bar">
+      <input type="submit" ng-click="editProfile(user)" value="Edit Profile" class="button button-full button-balanced" />
+    </div>
+
+  </form>
+
+  </ion-content>
+</ion-view>
+

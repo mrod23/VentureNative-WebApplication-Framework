@@ -1,0 +1,34 @@
+<ion-view view-title="Sos App">
+
+
+  <ion-content >
+
+  <form novalidate class="list">
+
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Name On Card</span>
+      <input type="text" ng-model="card.name" placeholder="Name">
+    </label>
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Number</span>
+      <input type="text" ng-model="card.number" placeholder="Card Number">
+    </label>
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Expiration Date</span>
+      <input type="text" ng-model="card.expDate" placeholder="Expiration Date">
+    </label>
+
+    <div class="button-bar">
+      <input type="submit" ng-click="saveCard(card)" value="Save Card" class="button button-block button-balanced" />
+      <button ng-if="!isNew" ng-click="deleteButton" class="button button-block button-positive">Delete</button>
+
+    </div>
+
+  </form>
+
+  </ion-content>
+</ion-view>
+
+
+
+

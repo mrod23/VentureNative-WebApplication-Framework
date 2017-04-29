@@ -1,0 +1,40 @@
+<!--
+  use this page to convert user to hosts 
+
+  this should send an email to the host letting them now
+-->
+
+<ion-view view-title="Create Host">
+  <ion-content >
+
+  <form novalidate class="list">
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Host Name</span>
+      <input type="text" ng-model="host.name" placeholder="Name">
+    </label>
+
+<!--     figure out what he's doing here for location -->
+<!--     <label class="item item-input item-floating-label">
+      <span class="input-label">Location</span>
+      <sos-google-place placeholder="Enter an address, Apt# and ZIP" ng-model="job.prelocation" />
+    </label> -->
+
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Bio</span>
+      <textarea ng-model="host.bio" placeholder="insert bio"></textarea>
+    </label>
+
+	<label class="item item-input item-floating-label">
+      <span class="input-label">Location</span>
+      <input type="text" ng-model="host.location" placeholder="location">
+    </label>
+
+    <div class="button-bar">
+      <input type="submit" ng-click="saveHost(host)" value="Create Host" class="button button-full button-balanced" />
+
+    </div>
+
+  </form>
+
+  </ion-content>
+</ion-view>

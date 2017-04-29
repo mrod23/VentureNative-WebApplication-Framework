@@ -1,0 +1,57 @@
+<ion-view view-title="test page" hide-back-button="true">
+
+  <button id="fab-activity" class="button button-fab button-fab-top-right expanded button-energized-900 flap"><i class="icon ion-paper-airplane"></i></button>
+  
+  <ion-content >
+     <h3>Featured Ventures </h3>
+     
+    <ion-slides options="options" slider="data.slider">
+      <ion-slider-slide>
+      <ion-card>
+        <img src="../../img/wolves.png">
+        <div class="card-title">São Paulo</div>
+        <div class="card-subtitle">41 Listings</div>
+      </ion-card>
+      </ion-slider-slide>
+      <ion-slider-slide>
+      <ion-card>
+        <img src="../../img/wolves.png">
+        <div class="card-title">Test</div>
+        <div class="card-subtitle">41 Listings</div>
+      </ion-card>
+      </ion-slider-slide>
+    </ion-slides>
+    
+
+    <h1>test</h1>
+
+    
+
+
+    <!-- <img class="lgImage" src="../../img/beach-house.png" /> -->
+  
+      <div class="home-image section-padding"> </div>
+      <h2 class="text-left">Hi, Mike</h2>
+      <p1 class="text left">Find a Venture, and travel with the knowledge of a local</p1>
+      
+       <ion ng-repeat="featured in featured">
+                <div  class="card card-gallery item item-text-wrap">     
+                    <!-- the anchor makes the entire surface area clickable --> 
+                    <ion-item ui-sref="app.ventureDetails({id: venture._id})" >
+                        <h1 class="item">{{featured.name}}</h1>
+                    </ion-item>
+                </div>
+        </ion> 
+   <!-- 
+    <label class="item item-input">
+         <ion-google-place placeholder="Where would you like to Venture?" ng-model="location" current-location="true" />
+    </label>
+  -->   
+
+    
+
+
+  </ion-content>
+
+</ion-view>
+

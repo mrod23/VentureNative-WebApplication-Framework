@@ -1,0 +1,31 @@
+<ion-modal-view>
+
+  <ion-header-bar class="Search-bar-title">
+
+    <h4 > Filter Ventures {{dick}}</h4>
+    <button class="button button-clear button-icon icon ion-checkmark-round pull-right"
+            ng-click="closeModal()">
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <h3>By Location</h3>
+    <ion-list>
+      <div ng-repeat="(key, value) in cities | groupBy:'country' track by $index"
+            ng-class="{ active: activeCountry === $index }"
+
+            class="accordion-container">
+        <ion-item class="item-stable" ng-click="changeActive($index)">
+            <i class="icon"
+                ng-class="$parent.activeCountry === $parent.$index? 'ion-minus' : 'ion-plus'"></i>
+          &nbsp;
+          Group {{key}}
+        </ion-item>
+        <ion-item class="item-accordion"
+                  ng-class="{ active: $parent.activeCities[c.id]}"
+                  ng-click="$parent.toggleActiveCity(c.id)" ng-repeat="c in value">
+          {{c.city}}
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

@@ -1,0 +1,69 @@
+<ion-view view-title="Venture Native">
+
+    <a class="contact-fab" ng-href="whatsapp://send?abid={{host.whatsapp}}">
+        <button  id="fab-activity" ng-show="contactActive"  class="button button-calm button-fab button-fab-bottom-right button-energized-900 ">
+            <i class="icon ion-social-whatsapp"></i>
+        </button>
+    </a>
+    <a class="contact-fab">
+        <button  id="fab-activity" ng-show="contactActive" ng-click="fb(host.facebook)"  class="button button-calm button-fab button-fab-bottom-right button-energized-900 ">
+            <i class="icon ion-social-facebook"></i>
+        </button>
+    </a>
+
+    <a class="contact-fab" ng-href="skype:{{host.skype}}?chat">
+        <button  id="fab-activity" ng-show="contactActive"  class="button button-calm button-fab button-fab-bottom-right button-energized-900 ">
+            <i class="icon ion-social-skype"></i>
+        </button>
+    </a>
+
+    <a class="contact-fab" ng-href="mailto:{{host.email}}?cc=name2@rapidtables.com&subject=I%20want%20to%20book%20your%20venture%20of%20the%20email">
+        <button  id="fab-activity" ng-show="contactActive"  class="button button-calm button-fab button-fab-bottom-right button-energized-900 ">
+            <i class="icon ion-email"></i>
+        </button>
+    </a>
+
+
+
+    <button id="fab-activity" ng-click="contactActive = !contactActive"
+        class="button button-calm button-fab button-fab-bottom-right  button-energized-900 "><i class="icon ion-chatboxes"></i>
+    </button>
+
+    <ion-content scroll="true">
+
+        <div ng-if="host" class="list card">
+
+          <div class="item item-avatar">
+            <img ng-src="{{host.images[0]}}">
+            <h2>{{host.name}}</h2>
+            <p>{{host.city.name}}</p>
+          </div>
+
+          <div class="item item-body">
+
+            <ion-slide-box >
+              <ion-slide ng-repeat="i in host.images">
+                <div class="box blue bg-image-size" bg-image="i">
+
+                </div>
+              </ion-slide>
+            </ion-slide-box>
+
+            <p>
+              {{host.bio}}
+            </p>
+          </div>
+
+        </div>
+        <div ng-if="ventures" class="list card">
+
+            <h2> My Ventures  </h2>
+
+            <div class list ng-repeat="venture in ventures">
+                 <venture-card venture="venture"></venture-card>
+            </div>
+        </div>
+
+
+    </ion-content>
+</ion-view>

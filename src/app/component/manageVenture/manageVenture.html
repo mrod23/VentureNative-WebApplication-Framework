@@ -1,0 +1,21 @@
+<ion-view view-title="Manage Ventures">
+  <ion-nav-buttons side="right">
+
+    <button ui-sref="app.createVenture"
+        class="button button-clear button-positive  icon ion-android-add-circle"></button>
+  </ion-nav-buttons>
+  <ion-content >
+
+
+
+  <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="doRefresh()">
+  </ion-refresher>
+  <p ng-if="!ventures || !ventures.length">You have no ventures yet.</p>
+
+  <venture-card-list ventures="ventures"></venture-card-list>
+
+
+  </ion-content>
+</ion-view>

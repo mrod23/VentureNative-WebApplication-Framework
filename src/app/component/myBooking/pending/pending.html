@@ -1,0 +1,17 @@
+<ion-view view-title="Pending Ventures">
+  <ion-content >
+  <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="doRefresh()">
+  </ion-refresher>
+  
+  <h2 ng-if="!bookings || !bookings.length">You have no Pending bookings</h2>
+  <ion-list class="list">
+    <ion-item ng-repeat="booking in bookings" class="item"
+              ui-sref="app.editMyBooking({id: booking.id})">
+      {{bookings}}
+    </ion-item>
+  </ion-list>
+
+  </ion-content>
+</ion-view>

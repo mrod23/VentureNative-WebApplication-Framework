@@ -1,0 +1,529 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0095)http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Hard-Coding_Credentials -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+      
+        <link rel="top" title="AWS SDK for JavaScript" href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/index.html">
+      
+    
+      
+        <link rel="prev" title="AWS SDK for Node.js" href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-intro.html">
+      
+    
+      
+        <link rel="next" title="Working with Services in Node.js" href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-services.html">
+      
+    
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    
+<title>
+  Configuring the SDK in Node.js
+  
+    — AWS SDK for JavaScript
+  
+</title>
+
+  <link rel="stylesheet" href="./s3.config_files/style.css" type="text/css" media="screen" charset="utf-8">
+
+  <link rel="stylesheet" href="./s3.config_files/common.css" type="text/css" media="screen" charset="utf-8">
+
+  <link rel="stylesheet" href="./s3.config_files/highlight.github.css" type="text/css" media="screen" charset="utf-8">
+
+  <link rel="stylesheet" href="./s3.config_files/highlight.github.css" type="text/css" media="screen" charset="utf-8">
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "node-configuring";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="./s3.config_files/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="./s3.config_files/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="./s3.config_files/highlight.pack.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="./s3.config_files/underscore.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="./s3.config_files/doctools.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="./s3.config_files/searchtools.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="./s3.config_files/highlight.pack.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+  hljs.initHighlightingOnLoad();
+</script>
+    <script type="text/javascript" charset="utf-8">
+      $(function() {
+        $('.object_link').each(function() {
+          $(this).html($(this).find('a').html())
+        });
+      });
+      $(function() {
+        generateTOC();
+        if ($('#toc li').size() == 0) {
+          $('#sidebar h2.toc').hide();
+        }
+      })
+    </script>
+    <script type="text/javascript" charset="utf-8">
+      hljs.initHighlightingOnLoad();
+    </script>
+  <script type="text/javascript" src="./s3.config_files/urchin.js"></script></head>
+  <body>
+    <div id="menu">
+      <div class="width-wrapper">
+          <div id="left-logo"><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/index.html">AWS SDK for JavaScript</a></div>
+          <ul id="main-menu">
+              <li><a href="http://aws.amazon.com/javascript">Homepage</a></li>
+              <li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/latest">API Docs</a></li>
+              <li><a href="https://forums.aws.amazon.com/forum.jspa?forumID=148">Forum</a></li>
+              <li><a href="https://github.com/aws/aws-sdk-js/issues">Issues</a></li>
+          </ul>
+          <!-- BEGIN-SECTION -->
+          <div id="github-stars">
+              <iframe src="./s3.config_files/github-btn.html" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe>
+          </div>
+          <!-- END-SECTION -->
+      </div>
+    </div>
+
+    <div id="indexwrapper">
+      <div class="related"></div>
+
+      <div class="document">
+        <div class="documentwrapper">
+          <div class="bodywrapper">
+            <div class="body">
+              <!--REGION_DISCLAIMER_DO_NOT_REMOVE-->
+
+              <div class="section">
+                <div id="filecontents"><h1 id="Configuring_the_SDK_in_Node_js">Configuring the SDK in Node.js</h1>
+
+<h2 id="The_Configuration_Object">The Configuration Object</h2>
+
+<p>Configuration in the SDK can be done in two ways:</p>
+
+<ol>
+<li>Global configuration on <code>AWS.config</code>, or,</li>
+<li>Passing extra configuration to a service object</li>
+</ol>
+
+
+<p>Setting global configuration with <code>AWS.config</code> is often easier to get up
+and running with, but service level configuration can provide much more control
+over your requests. Both of these configuration mechanisms are discussed.</p>
+
+<h2 id="Global_Configuration__AWS_config_">Global Configuration (<code>AWS.config</code>)</h2>
+
+<p>By default, you can set global configuration by updating the <code>AWS.config</code> object
+with new settings. The most common settings are:</p>
+
+<ol>
+<li><code>accessKeyId</code>, <code>secretAccessKey</code>, <code>sessionToken</code> — for credential
+management.</li>
+<li><code>region</code> — to set the region for requests</li>
+<li><code>sslEnabled</code> — whether SSL is enabled or not</li>
+<li><code>maxRetries</code> — to control the number of retries for a request</li>
+<li><code>logger</code> — a logger object to write debug information to. Set to
+<code>process.stdout</code> to get logging information about service requests.</li>
+</ol>
+
+
+<p>More configuration settings can be found in the
+<a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/latest">API reference documentation</a>.</p>
+
+<p>The only things you <em>need</em> to set in order to use the SDK are credentials and
+the region value. Let's discuss how to do that.</p>
+
+<h3 id="Setting_AWS_Credentials">Setting AWS Credentials</h3>
+
+<p class="note">Remember, if you set your AWS credentials in the shared
+  credentials file or via environment variables, the AWS SDK for Node.js will
+  automatically detect them, and you will not need to perform any manual
+  credential configuration in your application.
+</p>
+
+
+<p>Credentials are the most important thing you need to set when using any AWS SDK.
+Credentials can be set globally on the <code>AWS.config</code> object or per service by
+passing the credential information to the service object directly.</p>
+
+<p>There are a few ways to load credentials. Here they are, in order of
+recommendation:</p>
+
+<ol>
+<li>Loaded from IAM roles for Amazon EC2 (if running on EC2),</li>
+<li>Loaded from the shared credentials file (<code>~/.aws/credentials</code>),</li>
+<li>Loaded from environment variables,</li>
+<li>Loaded from a JSON file on disk,</li>
+<li>Hardcoded in your application</li>
+</ol>
+
+
+<p>We do not recommend that you hard-code your AWS credentials in your application;
+however, it is reasonable to temporarily hard-code credential information
+in small personal scripts or for testing purposes.</p>
+
+<h4 id="Credentials_from_IAM_Roles_for_EC2_Instances">Credentials from IAM Roles for EC2 Instances</h4>
+
+<p>If you are running your application on Amazon EC2, you can leverage EC2's
+<a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html">IAM roles</a>
+functionality in order to have credentials automatically provided to the
+instance.</p>
+
+<p>If you have configured your instance to use IAM roles, the SDK will
+automatically select these credentials for use in your application, and you do
+not need to manually provide credentials in any other format.</p>
+
+<h4 id="Credentials_from_the_Shared_Credentials_File_____aws_credentials_">Credentials from the Shared Credentials File (<code>~/.aws/credentials</code>)</h4>
+
+<p>By default, the SDK will automatically search the shared credentials file
+for credentials when loading. If you use this file for other SDKs and tools
+(like the CLI), you do not need to take any extra steps to configure
+credentials in the SDK.</p>
+
+<p>You may configure credentials for multiple access keys in the same shared
+configuration file using <em>profiles</em>. This is discussed in the last part of
+this section.</p>
+
+<h5 id="Creating_the_Shared_Credentials_File">Creating the Shared Credentials File</h5>
+
+<p>If you do not already have a shared credentials file, you can create one in
+your home directory, specifically inside of <code>~/.aws/credentials</code>. Create and
+open the file, and add the following text, filling in the
+<code>&lt;YOUR_ACCESS_KEY_ID&gt;</code> and <code>&lt;YOUR_SECRET_ACCESS_KEY&gt;</code> values:</p>
+
+<pre class="code ruby"><code class="ruby javascript">[<span class="keyword">default</span>]
+aws_access_key_id = <span class="xml"><span class="tag">&lt;<span class="title">YOUR_ACCESS_KEY_ID</span>&gt;</span>
+aws_secret_access_key = <span class="tag">&lt;<span class="title">YOUR_SECRET_ACCESS_KEY</span>&gt;</span>
+</span></code></pre>
+
+<p>The <code>[default]</code> heading defines credentials for the "default" profile. You
+can define credentials for other profiles too. This is discussed in the next
+section.</p>
+
+<p>Once this file is saved, the SDK will load these credentials without any
+extra configuration.</p>
+
+<h5 id="Using_Profiles_with_the_SDK">Using Profiles with the SDK</h5>
+
+<p>It is possible to have credential information for multiple access keys in the
+same shared configuration file. You can make use of different credentials
+through the use of "profiles". Each profile maps to a set of credentials.
+For example, multiple profiles could be configured like so:</p>
+
+<pre class="code ruby"><code class="ruby ini"><span class="title">[default]</span> <span class="comment">; the default profile</span>
+<span class="setting">aws_access_key_id = <span class="value">...</span></span>
+<span class="setting">aws_secret_access_key = <span class="value">...</span></span>
+
+<span class="title">[personal-account]</span> <span class="comment">; my "personal-account" profile</span>
+<span class="setting">aws_access_key_id = <span class="value">...</span></span>
+<span class="setting">aws_secret_access_key = <span class="value">...</span></span>
+
+<span class="title">[work-stuff]</span> <span class="comment">; work profile</span>
+<span class="setting">aws_access_key_id = <span class="value">...</span></span>
+<span class="setting">aws_secret_access_key = <span class="value">...</span></span>
+</code></pre>
+
+<p>By default, the SDK checks the <code>AWS_PROFILE</code> environment variable for the
+profile name to use. If no <code>AWS_PROFILE</code> variable is set in your environment,
+the SDK will use the "default" profile.</p>
+
+<p>In the above case, we could use <code>AWS_PROFILE=work-stuff</code>
+to load our work credentials when using the SDK. If we had some <code>script.js</code>
+file that used the SDK, we could run it with those credentials by typing:</p>
+
+<pre class="code ruby"><code class="ruby undefined">$ AWS_PROFILE=work-stuff node script.js
+</code></pre>
+
+<p>It is also possible to explicitly select the profile using the SDK, either
+by setting <code>process.env.AWS_PROFILE</code> prior to loading the SDK, or by selecting
+the credential provider manually:</p>
+
+<pre class="code js"><code class="js javascript"><span class="keyword">var</span> credentials = <span class="keyword">new</span> AWS.SharedIniFileCredentials({profile: <span class="string">'work-stuff'</span>});
+AWS.config.credentials = credentials;
+</code></pre>
+
+<h4 id="Credentials_from_Environment_Variables">Credentials from Environment Variables</h4>
+
+<p>By default, the SDK will automatically detect AWS credentials
+set in your environment and use them for requests. This means that if you
+properly set your environment variables, you do not need to manage credentials
+in your application at all.</p>
+
+<p>The keys that the SDK looks for are as follows:</p>
+
+<pre class="code plain"><code class="plain undefined">AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN (optional)
+</code></pre>
+
+<p>Alternately, the SDK can accept the <code>AMAZON_</code> prefix instead:</p>
+
+<pre class="code plain"><code class="plain undefined">AMAZON_ACCESS_KEY_ID, AMAZON_SECRET_ACCESS_KEY, AMAZON_SESSION_TOKEN (optional)
+</code></pre>
+
+<h4 id="Credentials_from_Disk">Credentials from Disk</h4>
+
+<p>You can also load configuration and credentials from disk using
+<code>AWS.config.loadFromPath</code> by passing a path to a JSON document
+containing the configuration data. The path specified is relative
+to your process's current working directory. For example, if you had a file
+named 'config.json' with the contents:</p>
+
+<pre class="code javascript"><code class="javascript">{ <span class="string">"accessKeyId"</span>: <span class="string">"akid"</span>, <span class="string">"secretAccessKey"</span>: <span class="string">"secret"</span>, <span class="string">"region"</span>: <span class="string">"us-east-1"</span> }
+</code></pre>
+
+<p>You can load the JSON data using the command:</p>
+
+<pre class="code javascript"><code class="javascript">AWS.config.loadFromPath(<span class="string">'./config.json'</span>);
+</code></pre>
+
+<p>Note that the <code>loadFromPath</code> method clobbers all existing configuration on
+the object. If you are adding extra configuration, make sure you add it
+after this call.</p>
+
+<h4 id="Hard-Coding_Credentials">Hard-Coding Credentials</h4>
+
+<p class="note">We recommend you <strong>not</strong> hard-code
+  credentials inside an application. Use this method only for
+  small personal scripts or for testing purposes.
+</p>
+
+
+<p>You can hard-code credentials by passing the credential information to the
+configuration object using <code>AWS.config.update()</code>:</p>
+
+<pre class="code javascript"><code class="javascript">AWS.config.update({accessKeyId: <span class="string">'akid'</span>, secretAccessKey: <span class="string">'secret'</span>});
+</code></pre>
+
+<h3 id="Setting_the_Region">Setting the Region</h3>
+
+<p>The AWS SDK for Node.js doesn't select the region by default. You can choose
+a region similarly to setting credentials by either loading from disk or
+using <code>AWS.config.update()</code>:</p>
+
+<pre class="code javascript"><code class="javascript">AWS.config.update({region: <span class="string">'us-west-1'</span>});
+</code></pre>
+
+<h3 id="Locking_API_Versions">Locking API Versions</h3>
+
+<p class="note">For more information on API version locking in the SDK, see the
+<a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-services.html" title="Working With Services">Working With Services</a> section.
+</p>
+
+
+<p>You can globally configure a set of API versions to use for each service by
+specifying the <code>apiVersions</code> parameter in <code>AWS.config</code>. For example,
+you can choose to set specific versions of the DynamoDB and EC2 services,
+while selecting the "latest" version of Redshift:</p>
+
+<pre class="code javascript"><code class="javascript">AWS.config.apiVersions = {
+  dynamodb: <span class="string">'2011-12-05'</span>,
+  ec2: <span class="string">'2013-02-01'</span>,
+  redshift: <span class="string">'latest'</span>
+}
+</code></pre>
+
+<p>Note that by default, the SDK will use the "latest" available API version
+when constructing a service.</p>
+
+<p>You can also lock all services at a specific point in time by using a "fuzzy
+version":</p>
+
+<pre class="code javascript"><code class="javascript"><span class="comment">// Try to use latest available APIs before this date</span>
+AWS.config.apiVersion = <span class="string">'2012-05-04'</span>;
+</code></pre>
+
+<h3 id="Configuring_a_Proxy">Configuring a Proxy</h3>
+
+<p>If you cannot connect to the internet directly, the SDK supports the use of
+HTTP or HTTPS proxies through the use of a third party HTTP agent such as
+<a href="https://github.com/TooTallNate/node-proxy-agent">proxy-agent</a>. You can visit
+<a href="http://npmjs.org/">npmjs.org</a> for a list of other proxy libraries.</p>
+
+<h5 id="Installation">Installation</h5>
+
+<pre class="code javascript"><code class="javascript">npm install proxy-agent --save
+</code></pre>
+
+<h5 id="In_your_code">In your code</h5>
+
+<pre class="code javascript"><code class="javascript"><span class="keyword">var</span> proxy = require(<span class="string">'proxy-agent'</span>);
+
+AWS.config.update({
+  httpOptions: { agent: proxy(<span class="string">'http://internal.proxy.com'</span>) }
+});
+
+<span class="keyword">var</span> s3 = <span class="keyword">new</span> AWS.S3();
+s3.getObject({Bucket: <span class="string">'bucket'</span>, Key: <span class="string">'key'</span>}, <span class="function"><span class="keyword">function</span> <span class="params">(err, data)</span> {</span>
+  console.log(err, data);
+});
+</code></pre>
+
+<h3 id="Registering_Certificate_Bundles">Registering Certificate Bundles</h3>
+
+<p>The default trust stores included with node.js includes the certificates needed to
+access AWS services. In some cases, it might be preferable to include only a specific
+set of certificates.</p>
+
+<pre class="code javascript"><code class="javascript"><span class="keyword">var</span> fs = require(<span class="string">'fs'</span>);
+<span class="keyword">var</span> https = require(<span class="string">'https'</span>);
+
+<span class="keyword">var</span> certs = [
+  fs.readFileSync(<span class="string">'/path/to/cert.pem'</span>)
+];
+
+AWS.config.update({
+  httpOptions: {
+    agent: <span class="keyword">new</span> https.Agent({
+      rejectUnauthorized: <span class="literal">true</span>,
+      ca: certs
+    })
+  }
+});
+
+<span class="keyword">var</span> s3 = <span class="keyword">new</span> AWS.S3({apiVersion: <span class="string">'2006-03-01'</span>});
+s3.getObject({Bucket: <span class="string">'bucket'</span>, Key: <span class="string">'key'</span>}, <span class="function"><span class="keyword">function</span> <span class="params">(err, data)</span> {</span>
+  console.log(err, data);
+});
+</code></pre>
+
+<h2 id="Service-Specific_Configuration">Service-Specific Configuration</h2>
+
+<p>Occasionally, you might want to apply configuration only to one service.
+For instance, you want to use multiple EC2 objects in different regions.
+You can do this by passing configuration data directly to the service object
+constructor:</p>
+
+<pre class="code javascript"><code class="javascript"><span class="keyword">var</span> ec2 = <span class="keyword">new</span> AWS.EC2({region: <span class="string">'ap-southeast-2'</span>, maxRetries: <span class="number">15</span>});
+</code></pre>
+
+<p>Note that the constructor takes all of the same configuration data as the
+<code>AWS.config</code> object described above, including credential information.</p>
+
+<h2 id="Immutable_Configuration_Data">Immutable Configuration Data</h2>
+
+<p>Global configuration changes apply to all requests for all <em>newly</em> created
+services. Any newly created service will merge its local options on top of
+the global configuration data at the time of creation. This means that any
+future updates to the global <code>AWS.config</code> object will <em>not</em> apply to existing
+service objects. These services would have to be manually updated with the new
+configuration data, or recreated using the following command (assuming an
+existing <code>s3</code> service object):</p>
+
+<pre class="code javascript"><code class="javascript">s3 = <span class="keyword">new</span> AWS.S3(s3.config);
+</code></pre>
+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sphinxsidebar">
+          <p class="logo">
+  <a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/index.html">
+    <img class="logo" src="./s3.config_files/logo.png" alt="Logo" height="63">
+  </a>
+</p>
+
+<h3 class="toc-title">Table of Contents</h3>
+
+<div id="toc"><ul class="top"><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Configuring_the_SDK_in_Node_js">Configuring the SDK in Node.js</a></li><ul><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#The_Configuration_Object">The Configuration Object</a></li><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Global_Configuration__AWS_config_">Global Configuration (AWS.config)</a></li><ul><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Setting_AWS_Credentials">Setting AWS Credentials</a></li><ul><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Credentials_from_IAM_Roles_for_EC2_Instances">Credentials from IAM Roles for EC2 Instances</a></li><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Credentials_from_the_Shared_Credentials_File_____aws_credentials_">Credentials from the Shared Credentials File (~/.aws/credentials)</a></li><ul><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Creating_the_Shared_Credentials_File">Creating the Shared Credentials File</a></li><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Using_Profiles_with_the_SDK">Using Profiles with the SDK</a></li></ul><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Credentials_from_Environment_Variables">Credentials from Environment Variables</a></li><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Credentials_from_Disk">Credentials from Disk</a></li><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Hard-Coding_Credentials">Hard-Coding Credentials</a></li></ul><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Setting_the_Region">Setting the Region</a></li><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Locking_API_Versions">Locking API Versions</a></li><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Configuring_a_Proxy">Configuring a Proxy</a></li><ul><ul><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Installation">Installation</a></li><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#In_your_code">In your code</a></li></ul></ul><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Registering_Certificate_Bundles">Registering Certificate Bundles</a></li></ul><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Service-Specific_Configuration">Service-Specific Configuration</a></li><li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html#Immutable_Configuration_Data">Immutable Configuration Data</a></li></ul></ul></div>
+
+<h3>Related Topics</h3>
+
+<ul>
+
+  <li><a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/index.html" title="Documentation Overview">Documentation Overview</a></li>
+
+  <ul>
+  
+    <li>Previous: <a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-intro.html" title="AWS SDK for Node.js">AWS SDK for Node.js</a></li>
+  
+  
+    <li>Next: <a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-services.html" title="Working with Services in Node.js">Working with Services in Node.js</a></li>
+  
+  </ul>
+</ul>
+
+
+<h3>Feedback</h3>
+<p class="feedback">Did you find this page useful? Do you have a suggestion? <a href="https://aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=AWS%20SDK%20for%20JavaScript&amp;hidden_file_name=node-configuring&amp;hidden_guide_name=SDK%20Reference&amp;hidden_api_version=2.0">Give us feedback</a> or
+send us a <a href="https://github.com/aws/aws-sdk-js">pull request</a> on GitHub.</p>
+
+
+<h3>Quick Search</h3>
+
+<form class="search" action="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/search.html" method="get">
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+        </div>
+
+        <div class="clearer"></div>
+      </div>
+
+      
+      <div id="footer-links" class="width-wrapper">
+        <a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-services.html" title="Next: Working with Services in Node.js">Next: Working with Services in Node.js</a>
+        <a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-intro.html" title="Prev: AWS SDK for Node.js">Prev: AWS SDK for Node.js</a>
+      </div>
+      
+
+      <div class="related"></div>
+
+      <div class="footer">
+        <div id="footer">
+  Generated on Tue May 10 13:49:47 2016 by
+  <a href="http://yardoc.org/" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.2.1).
+</div>
+
+<!-- BEGIN-SECTION -->
+<script type="text/javascript" src="./s3.config_files/amznUrchin.js"></script>
+<!-- SiteCatalyst code version: H.25.2. Copyright 1996-2012 Adobe, Inc. All Rights Reserved.
+More info available at http://www.omniture.com -->
+<script language="JavaScript" type="text/javascript" src="./s3.config_files/s_code.min.js">
+</script>
+<script language="JavaScript" type="text/javascript">
+  <!--
+  s.prop66='AWS SDK for JavaScript';
+  s.eVar66='D=c66';
+  s.prop65='API Reference';
+  s.eVar65='D=c65';
+  var s_code=s.t();if(s_code)document.write(s_code)
+  //-->
+</script>
+<script language="JavaScript" type="text/javascript">
+  <!--if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+  //-->
+</script>
+<noscript>
+  &lt;img src="http://amazonwebservices.d2.sc.omtrdc.net/b/ss/awsamazondev/1/H.25.2--NS/0" height="1" width="1" border="0" alt=""&gt;
+</noscript>
+<!--/DO NOT REMOVE/-->
+<!-- End SiteCatalyst code version: H.25.2. -->
+<!-- END-SECTION -->
+
+      </div>
+    
+  
+
+</body></html>

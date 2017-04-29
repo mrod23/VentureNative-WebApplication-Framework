@@ -1,0 +1,17 @@
+<ion-view view-title="Venture Native">
+    <ion-content>
+        <h4 class="text-center">What date would you like to go?</h4>
+        <label class="item item-input">
+          <span class="input-label">Date</span>
+          <input type="date" ng-model="booking.requestedDate">
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Time</span>
+          <input type="time" ng-model="booking.requestedTime">
+        </label>
+
+       <stripe-payment callback="book" price="venture.price"> </stripe-payment>
+
+  </ion-content>
+</ion-view>

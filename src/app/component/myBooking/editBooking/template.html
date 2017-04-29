@@ -1,0 +1,24 @@
+<ion-view view-title="Edit Booking">
+  <ion-content >
+  
+    <div class="text-left">
+      <ul> Venture Name: {{booking.venture.name}} </ul>
+      <ul> Requested Date: {{booking.requestedDate}} </ul>
+      <ul> Requested Time: {{booking.requestedTime}} </ul>
+      <ul> Price: {{booking.price}} </ul>
+      <ul> User Email: {{booking.user.email}} </ul>
+     </div>
+  
+  
+    <button ng-if="booking.status === 'pending' && booking.lastUpdatedBy !== user.id" class="button" ng-click="acceptBooking(booking)">
+      Accept
+    </button>
+    <button ng-if="booking.status === 'pending' || booking.status === 'active'" class="button" ng-click="cancelBooking(booking)">
+      Cancel
+    </button>
+    <button ng-if="booking.status === 'pending'" class="button"  ui-sref="app.updateMyBooking({id: booking.id})">
+      Change
+    </button>
+
+  </ion-content>
+</ion-view>

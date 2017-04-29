@@ -1,0 +1,23 @@
+<div  ui-sref="app.ventureDetails({id: venture.id})"  class="card venture-card">
+
+  <div class="background" bg-image="venture.images[0]">
+    <img class="avatar" ng-if="venture.host.images" ng-src="{{venture.host.images[0]}}">
+
+    <div class="title-bar" >
+      <p class="title">
+        {{venture.name}}
+      </p>
+      <p class="author" ng-if="venture.host.name"> By: {{venture.host.name}}</p>
+      <p class="location-name">{{venture.city.city}}, {{venture.city.country}}</p>
+    </div>
+
+
+    <p class="duration"> Around {{venture.duration}} Hours</p>
+
+    <span class="price pull-right">${{venture.price}}</span>
+
+
+  </div>
+
+
+</div>

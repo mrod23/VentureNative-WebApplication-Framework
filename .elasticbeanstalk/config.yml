@@ -1,0 +1,12 @@
+branch-defaults:
+  master:
+    environment: venturenative-app
+global:
+  application_name: venturenative-app
+  branch: null
+  default_ec2_keyname: mike
+  default_platform: Docker 1.11.2
+  default_region: us-east-1
+  profile: eb-cli
+  repository: null
+  sc: git

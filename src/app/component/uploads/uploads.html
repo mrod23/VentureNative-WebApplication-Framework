@@ -1,0 +1,21 @@
+<ion-view view-title="Image Management">
+
+  <ion-content >
+    {{item.images}}
+  <vn-file-upload
+    vn-id="content.id"
+    vn-type="content.type"
+    image-list="item.images"></vn-file-upload>
+
+  <vn-image-display
+    vn-id="content.id"
+    vn-type="content.type"
+    image-list="item.images"
+    change-on="images"></vn-image-display>
+
+  </ion-content>
+</ion-view>
+
+
+
+

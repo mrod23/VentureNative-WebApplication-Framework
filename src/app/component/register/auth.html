@@ -1,0 +1,141 @@
+
+<ion-view view-title="Sign Up / Login">
+  <ion-content scroll="false">
+
+
+
+  <ion-tabs class="tabs-positive tabs-icon-top">
+
+  <ion-tab title="Sign Up" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+    <!-- Tab 1 content -->
+      <div class="row login" ng-controller="signUpCTRL">
+        <div class="col">
+            <h4>Sign Up Using Email</h4>
+          <form novalidate class="test list list-inset">
+           
+            <label class="item item-input"> 
+              <span class="input-label" > Email </span>
+                <textarea ng-model="user.email" placeholder="Email Address">
+                </textarea>
+            </label>
+
+            <label class="item item-input"> 
+              <span class="input-label" > Password </span>
+                <textarea ng-model="user.password" placeholder="Password">
+                </textarea>
+            </label>
+
+
+        </form>
+
+
+                    <div class="row">
+            <div class="col"></div>
+
+            <div class="col col-75">
+              <button ng-click="loginGplus()"
+                class="button button-block  ion-social-googleplus icon-left gplus">
+                  Sign Up with Google&plus;
+              </button>
+            </div>
+
+            <div class="col"></div>
+          </div>
+
+
+          <div class="row">
+            <div class="col"></div>
+
+            <div class="col col-75 social-button">
+
+            </div>
+
+            <div class="col"></div>
+
+
+          </div>
+          <div class="row">
+
+            <div class="col-20"></div>
+            <button ng-click="register(user)" class="button done button-stable col-40">
+              Sign Up
+            </button>
+          </div>
+        </div>
+
+
+      </div>
+    </ion-tab>
+
+    <ion-tab title="Sign In" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+      <!-- Tab 2 content -->
+      <div class="row login" ng-controller="signInCTRL">
+          <div class="col">
+            <h4>To continue please sign in</h4>
+              <form novalidate class="list list-inset">
+           
+                <label class="item item-input"> 
+                  <span class="input-label" >Email </span>
+                    <textarea ng-model="user.email" placeholder="Email Address">
+                    </textarea>
+                </label>
+
+                <label class="item item-input "> 
+                  <span class="input-label" >Password </span>
+                    <textarea ng-model="user.password" placeholder="Password">
+                    </textarea>
+                </label>
+              </form>
+
+            <div class="row">
+              <div class="col"></div>
+
+              <div class="col col-75">
+                <button ng-click="loginGplus()"
+                  class="button button-block  ion-social-googleplus icon-left gplus">
+                    Sign in with Google&plus;
+                </button>
+              </div>
+
+              <div class="col"></div>
+            </div>
+
+
+            <div class="row">
+              <div class="col"></div>
+
+              <div class="col col-75 social-button">
+
+              </div>
+
+              <div class="col"></div>
+
+
+            </div>
+     
+
+
+              <div class="col-20"></div>
+              <button ng-click="login(user)" class="button done button-stable col-40">
+                Sign In
+              </button>
+            </div>
+          </div>
+
+
+        </div>
+    </ion-tab>
+
+  </ion-tabs>
+
+
+
+
+
+
+  </ion-content>
+</ion-view>
+
+
+
+

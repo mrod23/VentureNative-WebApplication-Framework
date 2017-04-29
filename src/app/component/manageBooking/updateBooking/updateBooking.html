@@ -1,0 +1,22 @@
+<ion-view view-title="Update Booking">
+  <ion-content >
+  	<form novalidate class="list">
+
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Booking Date</span>
+        <input type="date" ng-model="booking.requestedDate" placeholder="Date">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Booking Time</span>
+        <input type="time" ng-model="booking.requestedTime" placeholder="Time">
+      </label>
+
+      <div class="button-bar">
+        <input type="submit" ng-click="updateBooking(booking)" value="Update Changes" class="button button-full button-balanced" />
+      </div>
+
+    </form>
+
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,112 @@
+<ion-view view-title="Venture Details">
+
+  <ion-nav-buttons side="right">
+
+    <button ng-if="venture.host.id === user.id"  ui-sref="app.editVenture({id: venture.id})"
+        class="button button-clear button-positive  icon ion-edit"></button>
+
+
+    <button  ng-if="venture.host.id === user.id" ng-click="cancelVenture(venture)"
+        class="button button-clear button-positive  icon ion-close-circled"></button>
+
+
+  </ion-nav-buttons>
+
+  <ion-content class="animate-fade-slide-in">
+    <h1 class="item text-center">{{venture.name}}</h1>
+    <ion-slide-box on-slide-changed="slideHasChanged($index)">
+      <ion-slide ng-repeat="i in venture.images">
+        <div class="box blue bg-image-size" bg-image="i">
+
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+
+    <div ui-sref="app.host({id: venture.host.id})" class="row">
+      <img class="host-image-venture-details col col-50"
+          ng-src="{{venture.host.images[0]}}">
+      <div class="  col col-50">
+        <h3>{{venture.host.name}}</h3>
+        <p> {{venture.host.city.city}}</p>
+      </div>
+    </div>
+
+    <div class="item item-text-wrap">
+        <p>{{venture.duration}} Hour(s) </p>
+    </div>
+
+    <div class="item item-text-wrap">
+        <p>{{venture.description}} </p>
+    </div>
+    <h4 class="text-center">Weekly availability</h4>
+
+    <div class="list">
+
+      <div class="item item-button-right">
+        Monday
+        <button class="button button-positive">
+          <i class="icon" ng-class="{'ion-checkmark': venture.day.monday.available}"></i>
+        </button>
+      </div>
+
+      <div class="item item-button-right">
+        Tuesday
+        <button class="button button-positive">
+          <i class="icon" ng-class="{'ion-checkmark': venture.day.tuesday.available}"></i>
+        </button>
+      </div>
+
+      <div class="item item-button-right">
+        Wednesday
+        <button class="button button-positive">
+          <i class="icon" ng-class="{'ion-checkmark': venture.day.wednesday.available}"></i>
+        </button>
+      </div>
+
+      <div class="item item-button-right">
+        Thursdays
+        <button class="button button-positive">
+          <i class="icon" ng-class="{'ion-checkmark': venture.day.thursday.available}"></i>
+        </button>
+      </div>
+
+      <div class="item item-button-right">
+        Friday
+        <button class="button button-positive">
+          <i class="icon" ng-class="{'ion-checkmark': venture.day.friday.available}"></i>
+        </button>
+      </div>
+
+      <div class="item item-button-right">
+        Saturday
+        <button class="button button-positive">
+          <i class="icon" ng-class="{'ion-checkmark': venture.day.saturday.available}"></i>
+        </button>
+      </div>
+
+      <div class="item item-button-right">
+        Sunday
+        <button class="button button-positive">
+          <i class="icon" ng-class="{'ion-checkmark': venture.day.sunday.available}"></i>
+        </button>
+      </div>
+
+    </div>
+
+
+    <div class="item item-text-wrap">
+        <p> The host is flexible with booking times and dates. Request a booking to arrange a time that works for you.
+        </p>
+    </div>
+
+  </ion-content>
+
+
+
+
+  <ion-footer-bar ng-if="venture.host.id !== user.id" ui-sref="app.requestToBook({id: venture.id})" align-title="center" class="bar-calm">
+      <h1 class="title">Request to Book</h1>
+  </ion-footer-bar>
+
+</ion-view>
+
